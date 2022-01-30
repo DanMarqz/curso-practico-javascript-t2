@@ -33,7 +33,8 @@ function indicarPrecioConDescuento(){
 }
 
 function calcularPrecioConCodigo(){
-  const codigoDescuento = prompt('Introduce tu código de descuento');
+  const inputCodigoDescuento = document.getElementById('inputCodigoDescuento');
+  const codigoDescuento = inputCodigoDescuento.value
   
   const codigos = {
     'CUARTO-PA-MI' : 25,
@@ -45,7 +46,7 @@ function calcularPrecioConCodigo(){
   const porcentajeDescuentoPromo = codigos[codigoDescuento];
 
   if(porcentajeDescuentoPromo === undefined){
-    alert('Ha introducido un código de descuento invalido');
+    alert('Ha introducido un código de descuento inválido');
     return null;
   }else{
     return porcentajeDescuentoPromo;
