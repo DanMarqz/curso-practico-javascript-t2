@@ -20,7 +20,7 @@ function indicarPrecioConDescuento(){
   const inputDescuento = document.getElementById('inputDescuento');
   const valorDescuento = inputDescuento.value;
 
-  if(calcularPrecioConCodigo == null){
+  if(calcularPrecioConCodigo == undefined){
     const precioConDescuento = calcularPrecioConDescuento(valorPrecio, valorDescuento);  
     indicarPrecioFinal(precioConDescuento)
   }else{
@@ -44,10 +44,12 @@ function calcularPrecioConCodigo(){
   }
 
   const porcentajeDescuentoPromo = codigos[codigoDescuento];
-
-  if(porcentajeDescuentoPromo === undefined){
+  
+  if(codigoDescuento == ''){
+    return null
+  }else if(porcentajeDescuentoPromo === undefined){
     alert('Ha introducido un código de descuento inválido');
-    return null;
+    return undefined;
   }else{
     return porcentajeDescuentoPromo;
   }
