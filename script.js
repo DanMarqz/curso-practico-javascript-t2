@@ -8,6 +8,11 @@ function calcularPrecioConDescuento(precio, descuento){
   return precioConDescuento;
 }
 
+function indicarPrecioFinal(precioConDescuento){
+  const precioFinal = document.getElementById('precioFinal');
+  precioFinal.innerText = `El precio con descuento es: ${precioConDescuento}`;
+}
+
 function indicarPrecioConDescuento(){
   const inputPrecio = document.getElementById('inputPrecio');
   const valorPrecio = inputPrecio.value;
@@ -15,24 +20,35 @@ function indicarPrecioConDescuento(){
   const inputDescuento = document.getElementById('inputDescuento');
   const valorDescuento = inputDescuento.value;
 
-  const precioConDescuento = calcularPrecioConDescuento(valorPrecio, valorDescuento);
+  if(calcularPrecioConCodigo == null){
+    const precioConDescuento = calcularPrecioConDescuento(valorPrecio, valorDescuento);  
+    indicarPrecioFinal(precioConDescuento)
+  }else{
+    const precioConDescuento = calcularPrecioConDescuento(valorPrecio, valorDescuento);
+    const precioConCodigoDescuento = calcularPrecioConDescuento(precioConDescuento, calcularPrecioConCodigo())
+    indicarPrecioFinal(precioConCodigoDescuento)
+  }
 
-  const precioFinal = document.getElementById('precioFinal');
-
-  precioFinal.innerText = `El precio con descuento es: ${precioConDescuento}`;
+  
 }
 
-function codigosDeDescuento(){
-  const inputCodigoDescuento = document.getElementById('inputCodigoDescuento');
-  const codigoDescuento = inputCodigoDescuento.value;
+function calcularPrecioConCodigo(){
+  const codigoDescuento = prompt('Introduce tu código de descuento');
   
   const codigos = {
     'CUARTO-PA-MI' : 25,
     'MEDIA-MITAD' : 50,
-    'CUARTO-PA-TI' : 75
+    'CUARTO-PA-TI' : 75,
+    'PLATZI' : 100,
   }
 
   const porcentajeDescuentoPromo = codigos[codigoDescuento];
 
-  console.log(porcentajeDescuentoPromo)
+  if(porcentajeDescuentoPromo === undefined){
+    alert('Ha introducido un código de descuento invalido');
+    return null;
+  }else{
+    return porcentajeDescuentoPromo;
+  }
+
 }
