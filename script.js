@@ -21,3 +21,18 @@ function indicarPrecioConDescuento(){
 
   precioFinal.innerText = `El precio con descuento es: ${precioConDescuento}`;
 }
+
+function codigosDeDescuento(){
+  const inputCodigoDescuento = document.getElementById('inputCodigoDescuento');
+  const codigoDescuento = inputCodigoDescuento.value;
+  
+  const codigos = {
+    'CUARTO-PA-MI' : 25,
+    'MEDIA-MITAD' : 50,
+    'CUARTO-PA-TI' : 75
+  }
+
+  const porcentajeDescuentoPromo = codigos[codigoDescuento];
+
+  console.log(porcentajeDescuentoPromo)
+}
